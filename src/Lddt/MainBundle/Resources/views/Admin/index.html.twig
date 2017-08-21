@@ -1,0 +1,36 @@
+{% extends "LddtMainBundle::n2_admin.html.twig" %}
+{% block n3 %}
+    <h1>Liste des dessins a mettre en ligne({{ draws | length }})</h1>
+    <table class="table table-responsive table-bordered table-striped">
+
+
+        <thead>
+        <tr>
+            <th>Nom du dessin</th>
+            <th>Img</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for draw in draws %}
+            <tr>
+                <td>{{ draw.title |upper }}</td>
+                <td>
+                    {% if (draw.idInstagram is null) %}
+                        <img width="120" src="{{ asset(draw.pic.getWebPath) }}" alt="{{ draw.title }}"/>
+                    {% else %}
+                        <img width="120" src="{{ draw.pic.path }}" alt="{{ draw.title }}"/>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn btn-xs btn-primary" href="{{ path('lddt_admin_push_online',{'id':draw.id}) }}">Mettre
+                        en ligne</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "LddtMainBundle::n2.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{%block n3%}
+<!-- Template Niveau 3 -->
+<div class="row well">
+
+        <h2> Modifiez votre dessin:{{ draw.title | upper }} </h2>
+        <div class="col-lg-4 col-lg-offset-1">
+            <img  class="img-responsive"  src="{{ asset(draw.pic.getWebPath) }}"/>
+        </div>
+
+            Ici formulaire de modificiation du dessin
+            <div class="col-lg-5 col-lg-offset-1">
+                <h3>Envoyez votre dessin !</h3>
+                <!-- Template Formulaire -->
+                {#{{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}#}
+                {% include 'LddtMainBundle:Default/Partials:form_draw.html.twig' %}
+                <!-- Fin Template Formulaire -->
+                <!-- Si le visiteur n'est pas identifié -->
+                <!-- <p>Merci de vous<a href="#"> indentifier</a>  pour poster vos dessins !</p> -->
+
+
+
+
+    </div>
+</div>
+<!-- Fin Template Niveau 3 -->
+{% endblock n3%}

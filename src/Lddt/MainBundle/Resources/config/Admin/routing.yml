@@ -1,0 +1,9 @@
+lddt_admin_homepage:
+    path:   /
+    defaults: { _controller: LddtMainBundle:Admin:index}
+
+lddt_admin_push_online:
+    path:   /push/online/{id}
+    defaults: { _controller: LddtMainBundle:Admin:pushOnline}
+    requirements:
+      id: \d+

@@ -1,0 +1,48 @@
+{% extends "@LddtMain/n2.html.twig" %}
+ {% block n3 %} <!-- Template Niveau 3 -->
+    <div class="row">
+{#{{ dump(draws) }}#}
+        {% if category.name is defined %}
+            <h1>{{ category.name }}</h1>
+        {% endif %}
+
+        {% if color is defined %}
+            <h1>{{ color.name }} <div class="colorBlock"
+                                      style="background:#{{ color.code }}"></div> </h1>
+        {% endif %}
+
+        {% if tag is defined %}
+            <h1>{{ tag.name }} </h1>
+        {% endif %}
+
+    {% for draw in draws %}
+        <!-- Boucle For -->
+        <div class="col-lg-4">
+            <div class="thumbnail">
+                {% if(draw.idInstagram is null) %}
+                <img class="img-thumbnail"
+                     src="{{ asset(draw.pic.getWebPath)}}" />
+                {% else %}
+                <img class="img-thumbnail"
+                     src="{{draw.pic.path}}" />
+                {% endif %}
+                <div class="caption">
+                    <p><strong>{{ draw.title }}</strong></p>
+                    <p><a href="{{ path('lddt_main_list_by_cat',{'id':draw.category.id}) }}">{{ draw.category.name }}</a></p>
+
+                    <div class="col-lg-3 col-lg-offset-9">
+                        <p class="AuthorName">
+                            <a href="#">{{ draw.author.username }}</a>
+                            <img width="60" class="img-circle" src="{{ asset(draw.author.avatar.getWebPath) }}" />
+                        </p>
+                    </div>
+                    <a class="btn btn-small btn-info"
+                       href="{{ path('lddt_main_show',{'id':draw.id}) }}">Voir dessin <i class="icon-eye-open"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Boucle For -->
+        {% endfor %}
+
+    </div><!-- Fin Template Niveau 3 -->
+{% endblock n3 %}

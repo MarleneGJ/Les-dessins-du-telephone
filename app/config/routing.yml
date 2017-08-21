@@ -1,0 +1,11 @@
+lddt_user:
+    resource: "@LddtUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+lddt_main:
+    resource: "@LddtMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

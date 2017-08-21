@@ -1,0 +1,30 @@
+{#héritage template niveau 1#}
+{% extends "::n1.html.twig" %}
+{% block title %} {{ parent () }} n2 {% endblock title %}
+
+{% block body %}
+    {% include '@LddtMain/Default/Partials/menu_front.html.twig' %}
+    <!-- Template Niveau 2 -->
+    <div class="container margin-container-top">
+        <div class="row">
+            {% for message in app.flashes ('success') %}
+                <div class="alert alert-success">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes ('info') %}
+                <div class="alert alert-info">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+
+            <!--  <div class="alert alert-error">
+                   <p>Message d'erreur</p>
+            </div> -->
+        </div>
+
+        {% block n3 %}{% endblock n3 %}
+    </div><!--fin de container-->
+
+
+{% endblock body %}

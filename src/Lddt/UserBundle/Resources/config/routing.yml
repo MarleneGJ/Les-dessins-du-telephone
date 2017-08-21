@@ -1,0 +1,3 @@
+lddt_user_homepage:
+    path:     /mmm
+    defaults: { _controller: LddtUserBundle:Default:index }

@@ -1,0 +1,55 @@
+{% if is_granted("ROLE_USER") %}
+
+{{ form_start(form) }}
+<div class="form-group">
+    <span class="label-lg">{{ form_label(form.title)}}</span>
+    {{ form_errors(form.title) }}
+    {{ form_widget(form.title) }}
+    <span class="help-block">Saisir le nom du dessin.</span>
+</div>
+{% if form.pic is defined %}
+    <div class="form-group">
+        {{ form_errors(form.pic) }}
+        {{ form_widget(form.pic) }}
+        <span class="help-block">Téléchargez votre dessin.</span>
+    </div>
+    {% endif %}
+{#<div class="form-group">#}
+    {#<span class="label-lg">{{ form_label(form.authorName)}}</span>#}
+    {#{{ form_errors(form.authorName) }}#}
+    {#{{ form_widget(form.authorName) }}#}
+    {#<span class="help-block">Saisir le nom de l'auteur du dessin.</span>#}
+{#</div>#}
+{#<div class="form-group">#}
+    {#<span class="label-lg">{{ form_label(form.avatarPath)}}</span>#}
+    {#{{ form_errors(form.avatarPath) }}#}
+    {#{{ form_widget(form.avatarPath) }}#}
+    {#<span class="help-block">Saisir le chemin de l'avatar de l'auteur du dessin.</span>#}
+{#</div>#}
+<div class="form-group">
+    <span class="label-lg">{{ form_label(form.category)}}</span>
+    {{ form_errors(form.category) }}
+    {{ form_widget(form.category) }}
+    <span class="help-block">Saisir la catégorie du dessin.</span>
+</div>
+<div class="form-group">
+    <span class="label-lg">{{ form_label(form.color)}}</span>
+    {{ form_errors(form.color) }}
+    {{ form_widget(form.color) }}
+    <span class="help-block">Cocher les couleurs du dessin.</span>
+</div>
+<div class="form-group">
+    <ul class="tags" data-prototype="{{ form_widget(form.tag.vars.prototype)|e }}">
+        {% for tag in form.tag %}
+            <li>
+                {{ form_errors(tag) }}
+                {{ form_widget(tag) }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{{ form_end(form) }}
+    {% else %}
+        <p>Merci de vous <a href="{{ path('fos_user_security_login') }}">identifier</a> ou de <a href="{{ path('fos_user_registration_register') }}">créer un compte</a> pour envoyer un dessin</p>
+{% endif %}
